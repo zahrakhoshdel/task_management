@@ -13,7 +13,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SIGN_UP;
 
   static final routes = [
     GetPage(
@@ -33,7 +33,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TASKS,
-      page: () => TaskScreen(),
+      page: () => const TaskScreen(),
     ),
   ];
 }
