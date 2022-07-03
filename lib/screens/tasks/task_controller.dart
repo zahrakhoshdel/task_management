@@ -64,7 +64,7 @@ class TaskController extends GetxController {
 
   Stream<QuerySnapshot> getTasks() {
     return tasksCollection
-        .doc(auth.currentUser!.uid)
+        .doc(auth.currentUser?.uid)
         .collection('userTasks')
         .orderBy('taskDate', descending: false)
         .snapshots();
