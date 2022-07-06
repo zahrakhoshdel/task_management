@@ -3,13 +3,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_management/constants/app_colors.dart';
 import 'package:task_management/constants/text_styles.dart';
+import 'package:task_management/screens/authentication/authentication_controller.dart';
 import 'package:task_management/screens/tasks/task_controller.dart';
 import 'package:task_management/screens/tasks/widgets/task_card.dart';
+import 'package:task_management/widgets/logout_button.dart';
 import 'package:task_management/widgets/screen_title.dart';
 
 class TaskScreen extends StatelessWidget {
   final TaskController controller = Get.put(TaskController());
+  final AuthenticationController authController =
+      Get.put(AuthenticationController());
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,7 +26,29 @@ class TaskScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ScreenTitle(size: size, title: 'All Tasks'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ScreenTitle(size: size, title: 'All Tasks'),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                  child: Text(
+                    authController.displayName,
+                    style: TextStyles.titleTextStyle.copyWith(
+                        fontStyle: FontStyle.italic,
+                        color: AppColors.greyColor),
+                  ),
+                ),
+                LogoutButton(
+                  text: "Logout",
+                  icon: Icons.logout,
+                  onPressed: () {
+                    authController.signout();
+                  },
+                ),
+              ],
+            ),
             SizedBox(
               height: size.height * 0.02,
             ),
