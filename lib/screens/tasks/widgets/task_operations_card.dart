@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_management/constants/text_styles.dart';
 import 'package:task_management/models/task_model.dart';
+import 'package:task_management/constants/app_colors.dart';
 import 'package:task_management/screens/tasks/task_controller.dart';
 import 'package:task_management/screens/tasks/widgets/task_dialog.dart';
 
@@ -17,10 +19,10 @@ class TaskOperationsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         IconButton(
-          //onPressed: () {},
           onPressed: () async => await editTaskDialog(
             'Edit task',
             TaskModel(
@@ -36,8 +38,29 @@ class TaskOperationsCard extends StatelessWidget {
           icon: const Icon(Icons.edit),
         ),
         IconButton(
-            onPressed: () async {
-              deleteTask(taskId);
+            onPressed: () {
+              Get.defaultDialog(
+                title: "Remove Task",
+                contentPadding: EdgeInsets.all(size.width * 0.03),
+                titleStyle: TextStyles.titleTextStyle,
+                titlePadding: EdgeInsets.only(top: size.height * 0.02),
+                middleText: "Do you want to delete this task?",
+                middleTextStyle:
+                    TextStyles.subtitleTextStyle.copyWith(fontSize: 18),
+                radius: 30,
+                textCancel: "Cancel",
+                cancelTextColor: AppColors.primaryColor,
+                textConfirm: "Delete",
+                confirmTextColor: Colors.white,
+                onCancel: () {
+                  Get.back();
+                },
+                onConfirm: () {
+                  deleteTask(taskId);
+                  Get.back();
+                },
+                buttonColor: AppColors.primaryColor,
+              );
             },
             icon: const Icon(Icons.delete)),
       ],
