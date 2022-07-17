@@ -53,7 +53,7 @@ class TaskOperationsCard extends StatelessWidget {
                 textConfirm: "Delete",
                 confirmTextColor: Colors.white,
                 onCancel: () {
-                  Get.back();
+                  // Get.back();
                 },
                 onConfirm: () {
                   deleteTask(taskId);
