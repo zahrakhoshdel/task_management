@@ -6,7 +6,6 @@ import 'package:task_management/screens/authentication/signin_screen.dart';
 import 'package:task_management/screens/authentication/signup_screen.dart';
 import 'package:task_management/screens/home/home_binding.dart';
 import 'package:task_management/screens/home/home_screen.dart';
-import 'package:task_management/screens/tasks/task_screen.dart';
 
 part 'app_routes.dart';
 
@@ -31,9 +30,9 @@ class AppPages {
       page: () => const HomeScreen(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.TASKS,
-      page: () => TaskScreen(),
-    ),
+    //GetPage(
+    //name: _Paths.TASKS,
+    //page: () => TaskScreen(),
+    //),
   ];
 }
