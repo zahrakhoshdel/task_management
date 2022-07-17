@@ -1,13 +1,17 @@
+// ignore_for_file: void_checks
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:task_management/constants/app_colors.dart';
 import 'package:task_management/routes/app_pages.dart';
+import 'package:task_management/screens/home/home_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
+      onReady: () => Get.put(() => HomeController().initNaviationListener()),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );

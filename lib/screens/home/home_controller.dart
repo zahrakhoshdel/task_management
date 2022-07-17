@@ -26,4 +26,42 @@ class HomeController extends GetxController {
     super.onReady();
     isLoggedIn();
   }
+
+  /////////////////////////////////
+  RxBool loggedIn = false.obs;
+  @override
+  void onInit() {
+    super.onInit();
+    _checkAuth();
+  }
+
+  void _checkAuth() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        loggedIn(false);
+        print('User is currently signed out');
+      } else {
+        loggedIn(true);
+        print('User is signed in');
+      }
+    });
+  }
+
+  void initNaviationListener() {
+    /// inital startup naviation
+    _navigateBasedOnLogin();
+
+    /// future navigation based on auth state changes
+    ever(loggedIn, (value) {
+      _navigateBasedOnLogin();
+    });
+  }
+
+  void _navigateBasedOnLogin() {
+    if (loggedIn.value == false) {
+      Get.offAndToNamed(Routes.LOGIN);
+    } else {
+      Get.offAndToNamed(Routes.HOME);
+    }
+  }
 }
