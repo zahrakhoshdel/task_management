@@ -12,6 +12,10 @@ A simple task management application written in Flutter.
 ## 📋 Demo
 
 
+https://user-images.githubusercontent.com/91828519/181822286-0fd942cc-8420-4df4-ab26-1f3e0a449334.mp4
+
+
+
 ## 📋 Features
 
 - [x] Signup/Login with an email & password
