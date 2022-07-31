@@ -42,11 +42,11 @@ In the command terminal, run the following commands:
 
 1. Clone the repo.
     ```sh
-     git clone https://github.com/zahrakhoshdel/chat-app.git
+     git clone https://github.com/zahrakhoshdel/task_management.git
     ```
 2. Move to the desired folder
     ```sh
-     cd chat-app\
+     cd task_management\
     ```
 2. Install packages.
     ```sh
